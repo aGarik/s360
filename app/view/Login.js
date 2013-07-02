@@ -51,26 +51,6 @@ Ext.define('smiley360.view.Login', {
 					cls: 'cust-btn login-btn',
 					text: 'LOG IN'
 				},
-                {
-                    xtype: 'button',
-                    style: 'background-color: #3366CC;',
-                    itemId: 'cmdShare',
-                    text: 'Share with Twitter',
-                    ui: 'action',
-                    left: '80%',
-                    top: '80%',
-                    tap: 'onMybuttonTap'
-                },
-                {
-                    xtype: 'button',
-                    itemId: 'cmdFbShare',
-                    text: 'Share with Facebook',
-                    //width: '50px',
-                    ui: 'action',
-                    left: '60%',
-                    top: '80%',
-                    tap: 'onFbShareTap'
-                },
 				{
 					xtype: 'label',
 					html: 'Lost your password?',
@@ -87,12 +67,22 @@ Ext.define('smiley360.view.Login', {
 					cls: 'clear',
 					height: '27px'
 				},
-				{
-					xtype: 'button',
-					itemId: 'cmdFb',
-					cls: 'white cust-btn fb-login-btn',
-					text: 'LOG IN WITH FACEBOOK'
-				}
+                {
+                    xtype: 'button',
+                    style: 'background-color: #3366CC;',
+                    itemId: 'cmdShare',
+                    text: 'Share with Twitter',
+                    ui: 'action',
+                    tap: 'onMybuttonTap'
+                },
+                {
+                    xtype: 'button',
+                    itemId: 'cmdFbShare',
+                    text: 'Share with Facebook',
+                    //width: '50px',
+                    ui: 'action',
+                    tap: 'onFbShareTap'
+                },
 			]
 		}],
 		listeners: [
@@ -100,11 +90,6 @@ Ext.define('smiley360.view.Login', {
 				delegate: "#cmdLogin",
 				event: "tap",
 				fn: "onLoginButtonTap"
-			},
-			{
-				delegate: '#cmbFb',
-				event: 'tap',
-				fn: 'onFbButtonTap'
 			},
             {
                 delegate: '#cmdShare',
@@ -131,11 +116,6 @@ Ext.define('smiley360.view.Login', {
 			//alert('signup button tapped');
 			this.fireEvent('loginCommand', this);
 	},
-	onFbButtonTap: function(){
-		console.log("fb button tapped");
-			//alert('signup button tapped');
-			this.fireEvent('fbCommand', this);
-	},    
 	onMybuttonTap: function () {
 	    console.log("share button tapped");
 	    //alert('signup button tapped');

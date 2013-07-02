@@ -11,7 +11,6 @@ Ext.define('smiley360.controller.Index', {
         control: {
             loginView: {
                 loginCommand: 'loginCommand',
-                fbCommand: 'fbCommand',
                 fbShareCommand: 'fbShareCommand',
                 shareCommand: 'shareCommand',
                 signupPageCommand: 'signupPageCommand'
@@ -58,10 +57,6 @@ Ext.define('smiley360.controller.Index', {
         console.log("LoginCommand");
         Ext.Viewport.animateActiveItem(this.getHomeView(), this.slideLeftTransition);
 
-        //this.activateForgetPassword();
-    },
-    fbCommand: function () {
-        console.log("fbCommand");
         //this.activateForgetPassword();
     },
 

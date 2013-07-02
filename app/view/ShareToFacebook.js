@@ -140,25 +140,17 @@
                         items: [
                             {
                                 xtype: 'checkboxfield',
-                                width: 15,
-                                heght: 15,
+                                width: '50%',
                                 checked: false,
-                            },
-                            {
-                                xtype: 'label',
-                                cls: 'second-panel-text',
-                                html: 'Post to Profile Wall.',
+                                label: 'Post to Profile Wall.',
+                                labelAlign: 'right',
                             },
                             {
                                 xtype: 'checkboxfield',
-                                width: 15,
-                                heght: 15,
+                                width: '50%',
                                 checked: false,
-                            },
-                            {
-                                xtype: 'label',
-                                cls: 'second-panel-text',
-                                html: 'Post to Brand Page.',
+                                label: 'Post to Brand Page.',
+                                labelAlign: 'right',
                             },
                         ],
                     },

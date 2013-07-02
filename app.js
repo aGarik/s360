@@ -28,12 +28,12 @@ Ext.application({
     ],
     controllers: ['Index'],
     views: [
-        'Login', 'Signup', 'ForgetPassword', 'Home'
+        'Login', 'Signup', 'ForgetPassword', 'Home', 'ShareToFacebook', 'ShareToTwitter',
     ],
 
     icon: {
-		'36': 'resources/icons/Icon_Android36.png',
-		'48': 'resources/icons/Icon_Android48.png',
+        '36': 'resources/icons/Icon_Android36.png',
+        '48': 'resources/icons/Icon_Android48.png',
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
         '114': 'resources/icons/Icon@2x.png',
@@ -51,12 +51,12 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
-    launch: function() {
+    launch: function () {
         // Destroy the #appLoadingIndicator element
-        
-         Ext.fly('appLoadingIndicator').destroy();
 
-       
+        Ext.fly('appLoadingIndicator').destroy();
+
+
         var loginView = {
             xtype: 'loginview'
         }
@@ -64,19 +64,20 @@ Ext.application({
         var homeView = {
             xtype: 'homeview'
         }
-       
-       var signupView = {
+
+        var signupView = {
             xtype: 'signupview'
-       } 
+        }
+
         // Initialize the main view
         Ext.Viewport.add([loginView, homeView, signupView]);
     },
 
-    onUpdated: function() {
+    onUpdated: function () {
         Ext.Msg.confirm(
             "Application Update",
             "This application has just successfully been updated to the latest version. Reload now?",
-            function(buttonId) {
+            function (buttonId) {
                 if (buttonId === 'yes') {
                     window.location.reload();
                 }

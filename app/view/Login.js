@@ -1,6 +1,6 @@
 Ext.define('smiley360.view.Login', {
 	extend: 'Ext.form.Panel',
-	requires: ['Ext.form.FieldSet', 'Ext.form.Password', 'Ext.Label', 'Ext.Img'],
+	requires: ['Ext.form.FieldSet', 'Ext.form.Password', 'Ext.Label', 'Ext.Img', 'Ext.field.Text'],
 	alias: 'widget.loginview',
 	cls: 'page-bg',
 
@@ -51,6 +51,26 @@ Ext.define('smiley360.view.Login', {
 					cls: 'cust-btn login-btn',
 					text: 'LOG IN'
 				},
+                {
+                    xtype: 'button',
+                    style: 'background-color: #3366CC;',
+                    itemId: 'cmdShare',
+                    text: 'Share with Twitter',
+                    ui: 'action',
+                    left: '80%',
+                    top: '80%',
+                    tap: 'onMybuttonTap'
+                },
+                {
+                    xtype: 'button',
+                    itemId: 'cmdFbShare',
+                    text: 'Share with Facebook',
+                    //width: '50px',
+                    ui: 'action',
+                    left: '60%',
+                    top: '80%',
+                    tap: 'onFbShareTap'
+                },
 				{
 					xtype: 'label',
 					html: 'Lost your password?',
@@ -86,6 +106,16 @@ Ext.define('smiley360.view.Login', {
 				event: 'tap',
 				fn: 'onFbButtonTap'
 			},
+            {
+                delegate: '#cmdShare',
+                event: 'tap',
+                fn: 'onMybuttonTap'
+            },
+            {
+                delegate: '#cmdFbShare',
+                event: 'tap',
+                fn: 'onFbShareTap'
+            },
 	  		{
 	  			element: 'element',
 	            delegate: 'div#signup-label',
@@ -105,8 +135,20 @@ Ext.define('smiley360.view.Login', {
 		console.log("fb button tapped");
 			//alert('signup button tapped');
 			this.fireEvent('fbCommand', this);
+	},    
+	onMybuttonTap: function () {
+	    console.log("share button tapped");
+	    //alert('signup button tapped');
+	    this.fireEvent('shareCommand', this);
+
 	},
-	onSignupTap: function(){
+	onFbShareTap: function () {
+	    console.log("Facebook share button tapped");
+	    //alert('signup button tapped');
+	    this.fireEvent('fbShareCommand', this);
+
+	},
+	onSignupTap: function () {
 		console.log('signup label tapped');
 		this.fireEvent('signupPageCommand', this);
 	}

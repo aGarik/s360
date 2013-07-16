@@ -1,6 +1,6 @@
-﻿Ext.define('smiley360.view.ShareToTwitter', {
+﻿Ext.define('smiley360.view.ShareToBlog', {
     extend: 'Ext.Container',
-    alias: 'widget.sharetotwitterview',
+    alias: 'widget.sharetoblogview',
     config: {
         modal: true,
         centered: true,
@@ -25,77 +25,63 @@
             }, {
                 xtype: 'panel',
                 layout: 'hbox',
-                id: 'xTopPanel',
-                cls: 'popup-top-panel twitter-background',
-                items: [{
-                    xtype: 'label',
-                    cls: 'popup-title-text',
-                    html: 'Earn 5 Smiles Sharing on Twitter',
-                }, {
-                    xtype: 'image',
-                    docked: 'right',
-                    cls: 'popup-title-image',
-                    src: 'resources/images/tw-1.png',
-                }],
+                cls: 'popup-top-panel blog-background',
+                items: [
+                    {
+                        xtype: 'label',
+                        cls: 'popup-title-text',
+                        html: 'Earn 5 Smiles Sharing on your Blog',
+                    }, {
+                        xtype: 'image',
+                        docked: 'right',
+                        cls: 'popup-title-image',
+                        src: 'resources/images/share-blog.png',
+                    }],
             }, {
                 xtype: 'panel',
                 id: 'xMiddlePanel',
                 cls: 'popup-middle-panel',
                 items: [{
-                    xtype: 'textareafield',
-                    maxRows: 5,
-                    //maxLength: 84,
-                    cls: 'popup-input popup-input-text',
-                    listeners: {
-                        keyup: function () {
-                            var postLenght = this.getValue().length;
-                            var xPostCountLabel = Ext.getCmp('xPostCountLabel');
-
-                            xPostCountLabel.setHtml(postLenght.toString());
-
-                            if (postLenght > 84) {
-                                xPostCountLabel.setStyle('color: red;')
-                            }
-                            else {
-                                xPostCountLabel.setStyle('color: #878789;')
-                            }
-                        }
-                    }
+                    xtype: 'label',
+                    cls: 'popup-top-text',
+                    html: 'Submit a share-blog URL',
                 }, {
-                    xtype: 'panel',
-                    layout: 'hbox',
-                    items: [{
-                        xtype: 'label',
-                        cls: 'popup-post-bottom-text',
-                        style: 'color: #878789;',
-                        html: 'Tweet must contain a maximum of 84 characters.',
-                    }, {
-                        xtype: 'label',
-                        id: 'xPostCountLabel',
-                        docked: 'right',
-                        cls: 'popup-post-bottom-text',
-                        html: '0',
-                    }],
-                }],
+                    xtype: 'textfield',
+                    required: true,
+                    id: 'xBlogUrlField',
+                    cls: 'cust-input',
+                    value: 'www.wordpress.com/sampleblog',
+                }]
             }, {
                 xtype: 'panel',
                 id: 'xBottomPanel',
                 cls: 'popup-bottom-panel',
                 items: [{
-                    xtype: 'label',
-                    cls: 'popup-post-comment',
-                    html: 'The following text will automatically be added to your post:',
-                }, {
-                    xtype: 'label',
-                    cls: 'popup-post-comment-text',
-                    html: 'Try Campbell\'s Slow Kettle Style Soups and be sure to use this $1.00 off coupon! http://bit.ly/YxVW1D',
+                    xtype: 'checkboxfield',
+                    label: 'I disclosed that I received a free sample in my video.',
+                    labelAlign: 'right',
+                    labelWidth: '100%',
+                    labelWrap: true,
+                    labelCls: 'popup-checkbox-grey-label',
+                    //inputCls: 'popup-checkbox-input',
+                    cls: 'popup-checkbox',
+                    //listeners: {
+                    //    check: function () {
+                    //        console.log('check');
+                    //        this.setLabelCls('popup-checkbox-grey-label');
+                    //    },
+                    //    uncheck: function () {
+                    //        console.log('uncheck');
+                    //        this.setLabelCls('popup-checkbox-red-label');
+                    //    }
+                    //}
                 }],
             }, {
                 xtype: 'panel',
                 cls: 'popup-button-panel',
                 items: [{
                     xtype: 'button',
-                    text: 'POST',
+                    text: 'SUBMIT',
                     icon: 'resources/images/share-initial.png',
                     iconAlign: 'right',
                     iconCls: 'popup-post-icon',
@@ -122,10 +108,10 @@
     doShare: function () {
         var shareView = this;
         var shareData = {
-            post: Ext.getCmp('xPostText').getValue()
+            blogUrl: Ext.getCmp('xBlogUrlField').getValue()
         };
 
-        smiley360.setViewStatus(shareView, smiley360.viewStatus.progress);
+        //smiley360.setViewStatus(shareView, smiley360.viewStatus.progress);
         smiley360.services.shareToFacebook(shareData, function (response) {
             smiley360.setResponseStatus(shareView, response);
         });
@@ -133,7 +119,7 @@
 
     setStatus: function (status) {
         var xShareButton = Ext.getCmp('xShareButton');
-        var xShareStatus = Ext.getCmp('xShareStatus');
+        //var xShareStatus = Ext.getCmp('xShareStatus');
 
         switch (status) {
             case smiley360.viewStatus.progress: {

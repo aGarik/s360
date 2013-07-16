@@ -1,6 +1,6 @@
-Ext.define('smiley360.view.ForgetPassword', {
+Ext.define('smiley360.view.OfferRemove', {
     extend: 'Ext.Container',
-    alias: 'widget.forgetpasswordview',
+    alias: 'widget.offerremoveview',
     config: {
         modal: true,
         centered: true,
@@ -15,7 +15,6 @@ Ext.define('smiley360.view.ForgetPassword', {
             cls: 'popup-root-panel',
             items: [{
                 xtype: 'image',
-                //docked: 'top',
                 cls: 'popup-close-button',
                 listeners: {
                     tap: function () {
@@ -29,7 +28,7 @@ Ext.define('smiley360.view.ForgetPassword', {
                 items: [{
                     xtype: 'label',
                     cls: 'popup-title-text',
-                    html: 'Recover your Password.',
+                    html: 'Are you sure you want to remove this offer?',
                 }, {
                     xtype: 'image',
                     docked: 'right',
@@ -39,37 +38,21 @@ Ext.define('smiley360.view.ForgetPassword', {
                 }],
             }, {
                 xtype: 'panel',
-                cls: 'popup-bottom-panel',
+                cls: 'popup-button-panel',
                 items: [{
-                    xtype: 'textfield',
-                    required: true,
-                    id: 'xEmailField',
-                    placeHolder: 'Email',
-                    cls: 'cust-input',
-                }, {
                     xtype: 'label',
                     id: 'xMessageText',
                     cls: 'popup-message-text',
-                }],
-            }, {
-                xtype: 'panel',
-                cls: 'popup-button-panel',
-                items: [{
+                    style: 'margin: 10px;',
+                    html: 'You wan\'t be able to participate in this mission if you remove the offer.',
+                }, {
                     xtype: 'button',
-                    text: 'SUBMIT',
-                    //icon: 'resources/images/share-initial.png',
-                    //iconAlign: 'right',
-                    //iconCls: 'popup-post-icon',
+                    text: 'REMOVE THIS OFFER',
                     id: 'xSubmitButton',
                     cls: 'popup-submit-button',
                     listeners: {
                         tap: function () {
-                            if (this.getHtml() == 'CLOSE') {
-                                Ext.getCmp('xView').destroy();
-                            }
-                            else {
-                                Ext.getCmp('xView').doSubmit();
-                            }
+                            //Ext.getCmp('xView').doRemoveOffer();
                         }
                     },
                 }],
@@ -85,7 +68,7 @@ Ext.define('smiley360.view.ForgetPassword', {
         },
     },
 
-    doSubmit: function () {
+    doRemoveOffer: function () {
         var submitView = this;
         var submitData = {
             email: Ext.getCmp('xEmailField').getValue()

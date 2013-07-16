@@ -1,6 +1,6 @@
-﻿Ext.define('smiley360.view.ShareToTwitter', {
+﻿Ext.define('smiley360.view.ShareToYouTube', {
     extend: 'Ext.Container',
-    alias: 'widget.sharetotwitterview',
+    alias: 'widget.sharetoyoutubeview',
     config: {
         modal: true,
         centered: true,
@@ -25,70 +25,51 @@
             }, {
                 xtype: 'panel',
                 layout: 'hbox',
-                id: 'xTopPanel',
-                cls: 'popup-top-panel twitter-background',
-                items: [{
-                    xtype: 'label',
-                    cls: 'popup-title-text',
-                    html: 'Earn 5 Smiles Sharing on Twitter',
-                }, {
-                    xtype: 'image',
-                    docked: 'right',
-                    cls: 'popup-title-image',
-                    src: 'resources/images/tw-1.png',
-                }],
+                cls: 'popup-top-panel youtube-background',
+                items: [
+                    {
+                        xtype: 'label',
+                        cls: 'popup-title-text',
+                        html: 'Earn 5 Smiles Sharing on YouTube',
+                    }, {
+                        xtype: 'image',
+                        docked: 'right',
+                        cls: 'popup-title-image',
+                        src: 'resources/images/youtube_share.png',
+                    }],
             }, {
                 xtype: 'panel',
-                id: 'xMiddlePanel',
                 cls: 'popup-middle-panel',
                 items: [{
-                    xtype: 'textareafield',
-                    maxRows: 5,
-                    //maxLength: 84,
-                    cls: 'popup-input popup-input-text',
-                    listeners: {
-                        keyup: function () {
-                            var postLenght = this.getValue().length;
-                            var xPostCountLabel = Ext.getCmp('xPostCountLabel');
-
-                            xPostCountLabel.setHtml(postLenght.toString());
-
-                            if (postLenght > 84) {
-                                xPostCountLabel.setStyle('color: red;')
-                            }
-                            else {
-                                xPostCountLabel.setStyle('color: #878789;')
-                            }
-                        }
-                    }
+                    xtype: 'label',
+                    cls: 'popup-top-text',
+                    html: 'Submit a YouTube video URL',
                 }, {
-                    xtype: 'panel',
-                    layout: 'hbox',
-                    items: [{
-                        xtype: 'label',
-                        cls: 'popup-post-bottom-text',
-                        style: 'color: #878789;',
-                        html: 'Tweet must contain a maximum of 84 characters.',
-                    }, {
-                        xtype: 'label',
-                        id: 'xPostCountLabel',
-                        docked: 'right',
-                        cls: 'popup-post-bottom-text',
-                        html: '0',
-                    }],
-                }],
+                    xtype: 'textfield',
+                    required: true,
+                    cls: 'cust-input',
+                    value: 'www.youttube.com/',
+                }]
             }, {
                 xtype: 'panel',
-                id: 'xBottomPanel',
                 cls: 'popup-bottom-panel',
                 items: [{
-                    xtype: 'label',
-                    cls: 'popup-post-comment',
-                    html: 'The following text will automatically be added to your post:',
-                }, {
-                    xtype: 'label',
-                    cls: 'popup-post-comment-text',
-                    html: 'Try Campbell\'s Slow Kettle Style Soups and be sure to use this $1.00 off coupon! http://bit.ly/YxVW1D',
+                    xtype: 'checkboxfield',
+                    label: 'I disclosed that I received a free sample in my video.',
+                    labelAlign: 'right',
+                    labelWidth: '100%',
+                    labelWrap: true,
+                    labelCls: 'popup-checkbox-red-label',
+                    //inputCls: 'popup-checkbox-input',
+                    cls: 'popup-checkbox',
+                    listeners: {
+                        check: function () {
+                            this.setLabelCls('popup-checkbox-grey-label');
+                        },
+                        uncheck: function () {
+                            this.setLabelCls('popup-checkbox-red-label');
+                        }
+                    }
                 }],
             }, {
                 xtype: 'panel',
